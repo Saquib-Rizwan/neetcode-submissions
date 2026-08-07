@@ -1,0 +1,20 @@
+class Solution {
+    public boolean isNStraightHand(int[] hand, int groupSize) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+        Arrays.sort(hand);
+        for(int num:hand)
+        {
+            map.put(num,map.getOrDefault(num,0)+1);
+        }
+        for(int num:hand)
+        {
+            if(map.get(num)==0)continue;
+            for(int i=num;i<num+groupSize;i++)
+            {
+                if(map.getOrDefault(i,0)==0)return false;
+                map.put(i,map.get(i)-1);
+            }
+        }
+        return true;
+    }
+}
